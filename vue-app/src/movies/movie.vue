@@ -1,0 +1,95 @@
+<template>
+        <div class="container">
+            <div class="flex-container">
+                <div v-for="movie in allMovies" v-bind:key="movie.imdbID">
+                    <div class="card">
+                    <div class="container">                        
+                        <h4><b>{{movie.title | trim}}</b></h4>
+                        <img  v-bind:src="movie.poster"  alt= movie.title />
+                        <p>Release Year : {{movie.year}}</p>
+                        <button>
+                            Add to Cart
+                        </button>
+                    </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+</template>
+
+<script>
+import { mapGetters, mapActions } from 'vuex';
+import { Movie } from '../shared/models/movieModels';
+
+export default {
+    name: "Movie",
+    methods: {  
+        ...mapActions(['fetchMovies'])
+    },
+    computed: mapGetters(['allMovies']),
+    created() {  
+        this.fetchMovies()
+    },
+    filters: {
+        trim: function(title = '') {
+            if(title.length > 20) {  
+                return title.slice(0,20)+'..';
+            }
+            else {  
+                return title;
+            }  
+        }
+    }
+}
+</script>
+
+<style scoped>
+
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-self: center;
+  text-align:center;
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+  text-align: center;
+}
+
+
+.card {
+  /* Add shadows to create the "card" effect */
+  margin-top:2em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin-left: 6em;
+  margin-right: 3em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+button{ 
+  background-color: gray; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+img{ 
+    height:10em;
+    width:10em;
+}
+</style>

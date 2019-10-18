@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="flex-container">
+    <div *ngFor="let movie of movies">
+      <div class="card">
+        <div class="container">
+          <h4>
+            <b>{{ movie.Title | slice: 0:20 }}</b>
+          </h4>
+          <img src="{{ movie.Poster }}" alt="{{ movie.Poster }}" />
+          <p>Release Year : {{ movie.Year }}</p>
+          <button>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
