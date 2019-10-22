@@ -58,7 +58,7 @@ function InCartCheck(props) {
 }
 
 
-class Home extends Component {
+class Movie extends Component {
 componentWillMount() {
     this.props.fetchMovie();
   }
@@ -88,14 +88,14 @@ componentWillMount() {
         )
     }
 }
-Home.propTypes = {
+Movie.propTypes = {
   fetchMovie: PropTypes.func.isRequired,
   movies: PropTypes.array.isRequired,
   addCartCount: PropTypes.func.isRequired,
   reduceCartCount: PropTypes.func.isRequired,
   fetchCarts: PropTypes.func.isRequired,
   cart: PropTypes.array.isRequired,
-  addCartItem: PropTypes.array.isRequired,
+  addCartItem: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -110,4 +110,4 @@ const mapDispatchToProps = {
   reduceCartCount,
   addCartItem
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Movie);
